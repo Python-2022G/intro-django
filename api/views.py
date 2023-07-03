@@ -1,5 +1,5 @@
 from django.http import HttpRequest, HttpResponse, JsonResponse
-
+import json
 
 def home(request: HttpRequest) -> HttpResponse:
 
@@ -22,10 +22,20 @@ def say_hi(request: HttpRequest, first: str, last: str) -> HttpResponse:
 
 
 def get_sum(request: HttpRequest) -> JsonResponse:
-    # get query params from reqeust
-    parmas = request.GET
+    if request.method == 'GET':
+        # get query params from reqeust
+        parmas = request.GET
 
-    a = parmas.get('a', 0)
-    b = parmas.get('b', 0)
+        a = parmas.get('a', 0)
+        b = parmas.get('b', 0)
+    
+    elif request.method == 'POST':
+        # get data from request
+        data_json = request.body.decode('utf-8')
+        # convert to dict
+        data = json.loads(data_json)
+
+        a = data.get('a', 0)
+        b = data.get('b', 0)
 
     return JsonResponse({'sum': int(a) + int(b)})
