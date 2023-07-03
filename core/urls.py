@@ -1,13 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpRequest, HttpResponse
 
+from api.views import home
 
-def home(request: HttpRequest) -> HttpResponse:
-    print(request.method)
-    print(request.headers['Content-Type'])
-    
-    return HttpResponse('salom')
 
 
 urlpatterns = [
