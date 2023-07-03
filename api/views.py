@@ -16,15 +16,16 @@ def contact(request: HttpRequest) -> HttpResponse:
     return HttpResponse('contact page')
 
 
-def say_hi(request: HttpRequest) -> HttpResponse:
-    # get query params from reqeust
-    parmas = request.GET
-    name = parmas.get('name')
+def say_hi(request: HttpRequest, first: str, last: str) -> HttpResponse:
 
-    return HttpResponse(f'<h1>Hi, {name}</h1>')
+    return HttpResponse(f'<h1>Hi, {first} {last}</h1>')
 
 
 def get_sum(request: HttpRequest) -> HttpResponse:
-    # your code: a, b
+    # get query params from reqeust
+    parmas = request.GET
 
-    return HttpResponse(f'sum: {}')
+    a = parmas.get('a', 0)
+    b = parmas.get('b', 0)
+
+    return HttpResponse(f'sum: {int(a) + int(b)}')
