@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 
 
 def home(request: HttpRequest) -> HttpResponse:
@@ -21,11 +21,11 @@ def say_hi(request: HttpRequest, first: str, last: str) -> HttpResponse:
     return HttpResponse(f'<h1>Hi, {first} {last}</h1>')
 
 
-def get_sum(request: HttpRequest) -> HttpResponse:
+def get_sum(request: HttpRequest) -> JsonResponse:
     # get query params from reqeust
     parmas = request.GET
 
     a = parmas.get('a', 0)
     b = parmas.get('b', 0)
 
-    return HttpResponse(f'sum: {int(a) + int(b)}')
+    return JsonResponse({'sum': int(a) + int(b)})
