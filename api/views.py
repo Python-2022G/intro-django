@@ -1,6 +1,21 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 
-def home(request: HttpRequest, name):
+def home(request: HttpRequest):
 
-    return render(request, 'home.html', {'name': name})
+    users = [
+        {
+            "first": "Ali",
+            "last": "Valiyev"
+        },
+        {
+            "first": "Ali1",
+            "last": "Valiyev1"
+        },
+        {
+            "first": "Ali2",
+            "last": "Valiyev2"
+        }
+    ]
+
+    return render(request, 'home.html', {'users': users})
