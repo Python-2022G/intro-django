@@ -5,5 +5,5 @@ from api.views import home
 
 
 urlpatterns = [
-    path('home/', home),
+    path('home/<name>', home),
 ]
